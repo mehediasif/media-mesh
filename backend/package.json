@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/mehediasif/media-mesh/issues"
   },
-  "homepage": "https://github.com/mehediasif/media-mesh#readme"
+  "homepage": "https://github.com/mehediasif/media-mesh#readme",
+  "dependencies": {
+    "typescript": "^4.8.4"
+  }
 }
