@@ -11,10 +11,13 @@ import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import 'express-async-errors';
-import { config } from './config'
-import applicationRoutes from './routes'
+import { config } from './config';
+import Logger from 'bunyan';
+import applicationRoutes from './routes';
 
 const SERVER_PORT = 5000;
+const log: Logger = config.createLogger('SetupServer');
+
 
 export class MediaMesh {
     private app: Application;
@@ -38,7 +41,7 @@ export class MediaMesh {
                 name: 'session',
                 keys: [config.SECRET_KEY_ONE!, config.SECRET_KEY_TWO!],
                 maxAge: 24 * 7 * 360000,
-                secure: config.NODE_ENV !== "development"
+                secure: config.NODE_ENV !== 'development'
             })
         );
         app.use(hpp());
@@ -58,7 +61,7 @@ export class MediaMesh {
         app.use(json({ limit: '50mb'}));
         app.use(urlencoded({ extended: true, limit: '50mb'}));
     }
-    
+
     private routesMiddleware(app: Application): void{
         applicationRoutes(app);
     }
@@ -71,7 +74,7 @@ export class MediaMesh {
         });
 
         app.use((error: IErrorResponse, _req:Request, res: Response, next: NextFunction) =>{
-            console.log(error);
+            log.error(error);
             if(error instanceof CustomError) {
                 return res.status(error.statusCode).json(error.serializeErrors());
             }
@@ -86,7 +89,7 @@ export class MediaMesh {
             this.startHttpServer(httpServer);
             this.socketIOconnections(socketIO);
         } catch (error) {
-            console.log(error);
+            log.error(error);
         }
     }
 
@@ -105,13 +108,13 @@ export class MediaMesh {
     }
 
     private startHttpServer(httpServer: http.Server): void{
-        console.log(`server has started with ${process.pid}`);
+        log.info(`server has started with ${process.pid}`);
         httpServer.listen(SERVER_PORT, () => {
-            console.log("whatever! Server Running Port 5000");
+            log.info('whatever! Server Running Port 5000');
         });
     }
     private socketIOconnections(io: Server):void {
-
+        log.info('socketIOconnections running');
     }
 
 }
