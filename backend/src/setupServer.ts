@@ -1,4 +1,4 @@
-import {IErrorResponse, CustomError} from './shared/globals/helpers/error-handler';
+import {IErrorResponse, CustomError} from '@global/helpers/error-handler';
 import { Application, json, urlencoded, Response, Request, NextFunction} from 'express';
 import http from 'http';
 import cors from 'cors';
@@ -11,9 +11,9 @@ import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import 'express-async-errors';
-import { config } from './config';
+import { config } from '@root/config';
 import Logger from 'bunyan';
-import applicationRoutes from './routes';
+import applicationRoutes from '@root/routes';
 
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('SetupServer');
