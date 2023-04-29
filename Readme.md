@@ -26,6 +26,20 @@ IS a Social Networking app Focused on the Human Centered Design Principle..
   <li>CircleCI</li>
 </ol>
 
+##### Various AWS resources I am planning to use
+- VPC and subnets
+- Internet gateways
+- Route tables
+- NAT gateways and elastic ips
+- Security groups
+- Load balancers
+- Autoscaling groups
+- EC2 instances
+- Route53
+- S3 buckets
+- Deploying code to AWS amplyfi
+- Elasticache for redis clusters
+
 
 
 
