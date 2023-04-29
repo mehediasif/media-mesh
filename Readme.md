@@ -23,7 +23,7 @@ IS a Social Networking app Focused on the Human Centered Design Principle..
 <ol>
   <li>Infrastructure as Code : Terraform</li>
   <li>Cloud Platform: AWS</li>
-  <li>CircleCI</li>
+  <li>Ci pipeline: CircleCI</li>
 </ol>
 
 ##### Various AWS resources I am planning to use
